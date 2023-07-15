@@ -28,7 +28,7 @@ jobs:
         run: |
           pip list
       - name: Run python test file
-        env: |
+        env:
           TENANT_NAME: ${{ secrets.TENANT_NAME }}
           USER_NAME: ${{ secrets.USER_NAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
