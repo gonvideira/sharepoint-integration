@@ -1,0 +1,36 @@
+name: Python package
+
+on: workflow_dispatch
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          # Semantic version range syntax or exact version of a Python version
+          python-version: '3.11'
+          # Optional - x64 or x86 architecture, defaults to x64
+          architecture: 'x64'
+      # You can test your matrix by printing the current Python version
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
+      - name: Install pip and dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # make sure all needed libraries are in requirements file
+          pip install -r .github/workflows/requirements.txt
+      - name: Show installed packages
+        run: |
+          pip list
+      - name: Run python test file
+        env: |
+          TENANT_NAME: ${{ secrets.TENANT_NAME }}
+          USER_NAME: ${{ secrets.USER_NAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+        run: |
+          python "test-python.py"
