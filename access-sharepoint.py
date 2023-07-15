@@ -15,4 +15,4 @@ def access():
   print("Web title: {0}".format(web.properties['Title']))
 
 if __name__ == "__main__":
-  return access()
+  access()
