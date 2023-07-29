@@ -22,8 +22,11 @@ def get_files(ctx_365):
   recent_items = lib.items.order_by("Created desc").select(["ID", "FileRef"]).get().execute_query()
   for item in recent_items:  # type: ListItem
     file_url = item.properties.get("FileRef")
+    file_name = os.path.basename(file_url)
     download_path = 'outputs/'
-    print(f'File: {file_url}\n')
+    print(f'File URL: {file_url}\n')
+    print(f'File Name: {file_name}\n')
+    
     #with open(download_path, "wb") as local_file:
     #    item.file.download(local_file).execute_query()
     #print("[Ok] file has been downloaded into: {0}".format(download_path))
