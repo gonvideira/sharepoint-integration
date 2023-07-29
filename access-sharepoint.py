@@ -25,7 +25,7 @@ def get_files(client_context):
         file_url = item.properties.get("FileRef")
         file_name = os.path.basename(file_url)
         download_file(client_context, file_url)
-  return print('All files downloaded!')
+    return print('All files downloaded!')
 
 def download_file(ctx, file_url):
     """Function that downloads file bu url"""
