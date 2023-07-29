@@ -15,11 +15,11 @@ def access():
   ctx.execute_query()
   print("Web title: {0}".format(web.properties['Title']))
 
-def download_file(ctx):
+def download_file(ctx_365):
   file_url = 'OrderFilesSAP/StoreOrder_A026_2023-07-29.csv'
   download_path = os.path.join(tempfile.mkdtemp(), os.path.basename(file_url))
   with open(download_path, "wb") as local_file:
-    file = ctx.web.get_file_by_server_relative_url(file_url).download(local_file).execute_query()
+    file = ctx_365.web.get_file_by_server_relative_url(file_url).download(local_file).execute_query()
   print("[Ok] file has been downloaded into: {0}".format(download_path))
 
 if __name__ == "__main__":
