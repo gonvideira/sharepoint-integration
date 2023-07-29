@@ -7,7 +7,7 @@ USER_NAME = os.environ['USER_NAME']
 PASSWORD = os.environ['PASSWORD']
 
 def access():
-  site_url = f"https://{TENANT_NAME}.sharepoint.com/teams/ARREIOUStoreOrders"
+  site_url = f"https://{TENANT_NAME}.sharepoint.com/teams/ARREIOUStoreOrders/OrderFilesSAP"
   ctx = ClientContext(site_url).with_credentials(UserCredential(f"{USER_NAME}", f"{PASSWORD}"))
   web = ctx.web
   ctx.load(web)
