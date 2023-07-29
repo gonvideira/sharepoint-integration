@@ -12,7 +12,7 @@ def access():
   web = ctx.web
   ctx.load(web)
   ctx.execute_query()
-  print("Web title: {0}".format(web.properties['Title']))
+  print("Web title: {0}\n".format(web.properties['Title']))
   return ctx
 
 def get_files(ctx_365):
