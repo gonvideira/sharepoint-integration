@@ -32,7 +32,7 @@ def get_files(ctx_365):
 
 def download_file(ctx_365):
   file_url = 'OrderFilesSAP/StoreOrder_A026_2023-07-29.csv'
-  download_path = 'test.csv'
+  download_path = 'outputs/test.csv'
   with open(download_path, "wb") as local_file:
     file = ctx_365.web.get_file_by_server_relative_url(file_url).download(local_file).execute_query()
   print("[Ok] file has been downloaded into: {0}".format(download_path))
