@@ -39,4 +39,4 @@ def download_file(ctx_365):
 
 if __name__ == "__main__":
   ctx = access()
-  download_file(ctx)
+  get_files(ctx)
