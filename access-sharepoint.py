@@ -8,6 +8,7 @@ PASSWORD = os.environ['PASSWORD']
 FILE = 'OrderFilesSAP/StoreOrder_A026_2023-07-29.csv'
 
 def access():
+  """Function that accesses Sharepoint"""
   site_url = f"https://{TENANT_NAME}.sharepoint.com/teams/ARREIOUStoreOrders"
   ctx = ClientContext(site_url).with_credentials(UserCredential(f"{USER_NAME}", f"{PASSWORD}"))
   web = ctx.web
