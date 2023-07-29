@@ -20,13 +20,11 @@ def get_files(client_context):
   """Function to get all files in folder"""
   lib_title = "OrderFilesSAP"
   lib = client_context.web.lists.get_by_title(lib_title)
-  recent_items = lib.items.order_by("Created desc").select(["ID", "FileRef"]).get().execute_query()
-  for item in recent_items:  # type: ListItem
+  items_list = lib.items.order_by("Created desc").select(["ID", "FileRef"]).get().execute_query()
+  for item in items_list:  # type: ListItem
     file_url = item.properties.get("FileRef")
     file_name = os.path.basename(file_url)
     download_path = 'outputs/'
-    print(f'File URL: {file_url}\n')
-    print(f'File Name: {file_name}\n')
     download_file(client_context, file_url)
   return print('All files downloaded!')
 
@@ -37,7 +35,7 @@ def download_file(ctx, file_url):
   download_path = download_folder + file_name
   with open(download_path, "wb") as local_file:
     file = ctx.web.get_file_by_server_relative_url(file_url).download(local_file).execute_query()
-  print("[Ok] file has been downloaded into: {0}".format(download_path))
+  print("[Ok] file has been downloaded into: {0}\n".format(download_path))
 
 if __name__ == "__main__":
   ctx = access()
