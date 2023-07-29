@@ -14,6 +14,7 @@ def access():
   ctx.load(web)
   ctx.execute_query()
   print("Web title: {0}".format(web.properties['Title']))
+  return ctx
 
 def download_file(ctx_365):
   file_url = 'OrderFilesSAP/StoreOrder_A026_2023-07-29.csv'
@@ -24,4 +25,5 @@ def download_file(ctx_365):
   print("[Ok] file has been downloaded into: {0}".format(download_path))
 
 if __name__ == "__main__":
-  access()
+  ctx = access()
+  download_file(ctx)
