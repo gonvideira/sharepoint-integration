@@ -5,6 +5,7 @@ from office365.sharepoint.client_context import ClientContext
 TENANT_NAME = os.environ['TENANT_NAME']
 USER_NAME = os.environ['USER_NAME']
 PASSWORD = os.environ['PASSWORD']
+FILE = 'OrderFilesSAP/StoreOrder_A026_2023-07-29.csv'
 
 def access():
   site_url = f"https://{TENANT_NAME}.sharepoint.com/teams/ARREIOUStoreOrders"
@@ -26,15 +27,17 @@ def get_files(ctx_365):
     download_path = 'outputs/'
     print(f'File URL: {file_url}\n')
     print(f'File Name: {file_name}\n')
-    
+    download_file(ctx_365, file_url)
     #with open(download_path, "wb") as local_file:
     #    item.file.download(local_file).execute_query()
     #print("[Ok] file has been downloaded into: {0}".format(download_path))
   return None
 
-def download_file(ctx_365):
-  file_url = 'OrderFilesSAP/StoreOrder_A026_2023-07-29.csv'
-  download_path = 'outputs/test.csv'
+def download_file(ctx_365, file_url):
+  """Function that downloads file bu url"""
+  file_name = os.path.basename(file_url)
+  download_folder = 'outputs/'
+  download_path = download_folder + file_name
   with open(download_path, "wb") as local_file:
     file = ctx_365.web.get_file_by_server_relative_url(file_url).download(local_file).execute_query()
   print("[Ok] file has been downloaded into: {0}".format(download_path))
