@@ -1,7 +1,7 @@
 import os
 from office365.runtime.auth.user_credential import UserCredential
 from office365.sharepoint.client_context import ClientContext
-import tempfile
+# import tempfile
 
 TENANT_NAME = os.environ['TENANT_NAME']
 USER_NAME = os.environ['USER_NAME']
@@ -17,7 +17,8 @@ def access():
 
 def download_file(ctx_365):
   file_url = 'OrderFilesSAP/StoreOrder_A026_2023-07-29.csv'
-  download_path = os.path.join(tempfile.mkdtemp(), os.path.basename(file_url))
+  # download_path = os.path.join(tempfile.mkdtemp(), os.path.basename(file_url))
+  download_path = 'test.csv'
   with open(download_path, "wb") as local_file:
     file = ctx_365.web.get_file_by_server_relative_url(file_url).download(local_file).execute_query()
   print("[Ok] file has been downloaded into: {0}".format(download_path))
