@@ -17,9 +17,8 @@ def access():
 
 def get_files(ctx_365):
   """Function to get all files in folder"""
-  ctx = ClientContext(test_site_url).with_credentials(test_user_credentials)
   lib_title = "OrderFilesSAP"
-  lib = ctx.web.lists.get_by_title(lib_title)
+  lib = ctx_365.web.lists.get_by_title(lib_title)
   recent_items = lib.items.order_by("Created desc").select(["ID", "FileRef"]).get().execute_query()
   for item in recent_items:  # type: ListItem
     file_url = item.properties.get("FileRef")
